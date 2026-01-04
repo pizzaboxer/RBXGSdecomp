@@ -1,3 +1,8 @@
+#pragma once
+#include "AppDraw/Part.h"
+#include "RbxGraphics/Adorn.h"
+#include "G3D/GCamera.h"
+
 namespace RBX
 {
     // TODO: is this supposed to be here?
