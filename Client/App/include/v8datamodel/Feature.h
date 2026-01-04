@@ -1,14 +1,9 @@
 #pragma once
 #include "v8datamodel/JointInstance.h"
 
-// TODO: implement classes
-
 namespace RBX
 {
     extern const char* sFeature;
-    extern const char* sHole;
-    extern const char* sVelocityMotor;
-
     class Feature : public DescribedNonCreatable<Feature, Instance, &sFeature>,
                     public IRenderable
     {
@@ -52,71 +47,108 @@ namespace RBX
         virtual void render3dSelect(Adorn*, SelectState);
 
     protected:
-        bool getRenderCoord(G3D::CoordinateFrame&) const;
+        bool getRenderCoord(G3D::CoordinateFrame& c) const;
         virtual Feature::InOutZ getCoordOrientation() const;
 
     public:
-        Feature(const Feature&);
         Feature();
         virtual ~Feature();
 
-        NormalId getFaceId() const;
-        void setFaceId(NormalId);
+        NormalId getFaceId() const
+        {
+            return faceId;
+        }
+        void setFaceId(NormalId value);
 
-        Feature::TopBottom getTopBottom() const;
-        void setTopBottom(TopBottom);
+        Feature::TopBottom getTopBottom() const
+        {
+            return topBottom;
+        }
+        void setTopBottom(TopBottom value);
 
-        Feature::LeftRight getLeftRight() const;
-        void setLeftRight(LeftRight);
+        Feature::LeftRight getLeftRight() const
+        {
+            return leftRight;
+        }
+        void setLeftRight(LeftRight value);
 
-        Feature::InOut getInOut() const;
-        void setInOut(InOut);
+        Feature::InOut getInOut() const
+        {
+            return inOut;
+        }
+        void setInOut(InOut value);
 
         G3D::CoordinateFrame computeLocalCoordinateFrame() const;
     };
 
+    extern const char* sHole;
     class Hole : public DescribedCreatable<Hole, Feature, &sHole>
     {
     private:
-        virtual void render3dAdorn(Adorn*);
+        virtual void render3dAdorn(Adorn* adorn);
         virtual Feature::InOutZ getCoordOrientation() const;
 
     public:
-        Hole(const Hole&);
         Hole();
         virtual ~Hole();
     };
 
+    extern const char* sMotorFeature;
+    class MotorFeature : public DescribedCreatable<MotorFeature, Feature, &sMotorFeature>
+    {
+    private:
+        void otherFeatureChanged();
+        virtual void render3dAdorn(Adorn* adorn);
+
+    public:
+        MotorFeature(const MotorFeature&);
+        MotorFeature();
+        virtual ~MotorFeature();
+        MotorFeature& operator=(const MotorFeature&);
+
+        static bool canJoin(Instance*, Instance*);
+        static void join(Instance*, Instance*);
+    };
+
+    extern const char* sVelocityMotor;
     class VelocityMotor : public DescribedCreatable<VelocityMotor, JointInstance, &sVelocityMotor>
     {
     private:
         boost::shared_ptr<Hole> hole;
         boost::signals::scoped_connection holeAncestorChanged;
 
-        const MotorJoint* motorJoint() const;
-        MotorJoint* motorJoint();
+        const MotorJoint* motorJoint() const
+        {
+            return rbx_static_cast<MotorJoint*>(joint);
+        }
+        MotorJoint* motorJoint()
+        {
+            return rbx_static_cast<MotorJoint*>(joint);
+        }
 
         void onEvent_HoleAncestorChanged();
-        void setPart(int, Feature*);
+        void setPart(int i, Feature* feature);
 
         virtual bool askSetParent(const Instance*) const;
         virtual void onAncestorChanged(const AncestorChanged&);
 
     public:
-        VelocityMotor(const VelocityMotor&);
         VelocityMotor();
         virtual ~VelocityMotor();
 
-        Hole* getHole() const;
-        void setHole(Hole*);
+        Hole* getHole() const
+        {
+            return hole.get();
+        }
+        void setHole(Hole* value);
 
         float getMaxVelocity() const;
-        void setMaxVelocity(float);
+        void setMaxVelocity(float value);
 
         float getDesiredAngle() const;
-        void setDesiredAngle(float);
+        void setDesiredAngle(float value);
 
         float getCurrentAngle() const;
-        void setCurrentAngle(float);
+        void setCurrentAngle(float value);
     };
 }

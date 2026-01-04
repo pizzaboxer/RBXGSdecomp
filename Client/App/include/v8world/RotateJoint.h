@@ -67,7 +67,7 @@ namespace RBX
 			: RotateJoint(axlePrim, holePrim, c0, c1)
 		{
 		}
-		__forceinline RotateVJoint()
+		RotateVJoint()
 			: RotateJoint()
 		{
 		}

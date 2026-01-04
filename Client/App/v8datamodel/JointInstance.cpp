@@ -23,14 +23,6 @@ static const RBX::Reflection::PropDescriptor<RBX::Motor, float> prop_CurrentAngl
 namespace RBX
 {
 	const char* sJointInstance = "JointInstance";
-	const char* sAutoJoint = "AutoJoint";
-	const char* sSnap = "Snap";
-	const char* sWeld = "Weld";
-	const char* sGlue = "Glue";
-	const char* sRotate = "Rotate";
-	const char* sRotateP = "RotateP";
-	const char* sRotateV = "RotateV";
-	const char* sMotor = "Motor";
 
 	JointInstance::JointInstance(Joint* joint)
 		: joint(joint)
@@ -87,6 +79,8 @@ namespace RBX
 				20.0);
 		}
 	}
+
+	const char* sAutoJoint = "AutoJoint";
 
 	AutoJoint::AutoJoint(Joint* _joint)
 		: DescribedNonCreatable(_joint)
@@ -210,6 +204,8 @@ namespace RBX
 		raisePropertyChanged(prop_C1);
 	}
 
+	const char* sSnap = "Snap";
+
 	Snap::Snap(Joint* joint)
 		: DescribedCreatable(joint)
 	{
@@ -223,6 +219,8 @@ namespace RBX
 		setName("Snap");
 	}
 
+	const char* sWeld = "Weld";
+
 	Weld::Weld(Joint* joint)
 		: DescribedCreatable(joint)
 	{
@@ -233,6 +231,8 @@ namespace RBX
 		: DescribedCreatable(new WeldJoint())
 	{
 	}
+
+	const char* sGlue = "Glue";
 
 	Glue::Glue(Joint* joint)
 		: DescribedCreatable(joint)
@@ -245,6 +245,8 @@ namespace RBX
 	{
 	}
 
+	const char* sRotate = "Rotate";
+
 	Rotate::Rotate(Joint* joint)
 		: DescribedCreatable(joint)
 	{
@@ -255,6 +257,8 @@ namespace RBX
 		: DescribedCreatable(new RotateJoint())
 	{
 	}
+
+	const char* sRotateP = "RotateP";
 
 	RotateP::RotateP(Joint* joint)
 		: DescribedCreatable(joint)
@@ -267,6 +271,8 @@ namespace RBX
 	{
 	}
 
+	const char* sRotateV = "RotateV";
+
 	RotateV::RotateV(Joint* joint)
 		: DescribedCreatable(joint)
 	{
@@ -277,6 +283,8 @@ namespace RBX
 		: DescribedCreatable(new RotateVJoint())
 	{
 	}
+
+	const char* sMotor = "Motor";
 
 	Motor::Motor(Joint* joint)
 		: DescribedCreatable(joint)
@@ -297,7 +305,7 @@ namespace RBX
 
 	void Motor::setMaxVelocity(float value)
 	{
-		if (value != rbx_static_cast<MotorJoint*>(joint)->maxVelocity)
+		if (value != getMaxVelocity())
 		{
 			rbx_static_cast<MotorJoint*>(joint)->maxVelocity = value;
 			raisePropertyChanged(prop_MaxVelocity);
@@ -311,7 +319,7 @@ namespace RBX
 
 	void Motor::setDesiredAngle(float value)
 	{
-		if (value != rbx_static_cast<MotorJoint*>(joint)->desiredAngle)
+		if (value != getDesiredAngle())
 		{
 			rbx_static_cast<MotorJoint*>(joint)->desiredAngle = value;
 			raisePropertyChanged(prop_DesiredAngle);
@@ -325,7 +333,7 @@ namespace RBX
 
 	void Motor::setCurrentAngle(float value)
 	{
-		if (value != rbx_static_cast<MotorJoint*>(joint)->getCurrentAngle())
+		if (value != getCurrentAngle())
 		{
 			rbx_static_cast<MotorJoint*>(joint)->setCurrentAngle(value);
 			raisePropertyChanged(prop_CurrentAngle);

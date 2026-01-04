@@ -9,15 +9,6 @@
 namespace RBX 
 {
 	extern const char* sJointInstance;
-	extern const char* sAutoJoint;
-	extern const char* sSnap;
-	extern const char* sWeld;
-	extern const char* sGlue;
-	extern const char* sRotate;
-	extern const char* sRotateP;
-	extern const char* sRotateV;
-	extern const char* sMotor;
-
 	class JointInstance : public DescribedNonCreatable<JointInstance, Instance, &sJointInstance>,
 						  public IRenderable,
 						  public IJointOwner
@@ -33,7 +24,7 @@ namespace RBX
 		~JointInstance();
     };
 
-
+	extern const char* sAutoJoint;
 	class AutoJoint : public DescribedNonCreatable<AutoJoint, JointInstance, &sAutoJoint>
 	{
 	private:
@@ -65,6 +56,8 @@ namespace RBX
 		void setC1(const G3D::CoordinateFrame& value);
 	};
 
+
+	extern const char* sSnap;
 	class Snap : public DescribedCreatable<Snap, AutoJoint, &sSnap>
 	{
 	public:
@@ -73,6 +66,7 @@ namespace RBX
 		virtual ~Snap();
 	};
 
+	extern const char* sWeld;
 	class Weld : public DescribedCreatable<Weld, AutoJoint, &sWeld>
 	{
 	public:
@@ -81,6 +75,7 @@ namespace RBX
 		virtual ~Weld();
 	};
 
+	extern const char* sGlue;
 	class Glue : public DescribedCreatable<Glue, AutoJoint, &sGlue>
 	{
 	public:
@@ -89,6 +84,7 @@ namespace RBX
 		virtual ~Glue();
 	};
 
+	extern const char* sRotate;
 	class Rotate : public DescribedCreatable<Rotate, AutoJoint, &sRotate>
 	{
 	public:
@@ -97,6 +93,7 @@ namespace RBX
 		virtual ~Rotate();
 	};
 
+	extern const char* sRotateP;
 	class RotateP : public DescribedCreatable<RotateP, AutoJoint, &sRotateP>
 	{
 	public:
@@ -105,6 +102,7 @@ namespace RBX
 		virtual ~RotateP();
 	};
 
+	extern const char* sRotateV;
 	class RotateV : public DescribedCreatable<RotateV, AutoJoint, &sRotateV>
 	{
 	public:
@@ -113,6 +111,7 @@ namespace RBX
 		virtual ~RotateV();
 	};
 
+	extern const char* sMotor;
 	class Motor : public DescribedCreatable<Motor, AutoJoint, &sMotor>
 	{
 	private:
