@@ -221,20 +221,24 @@ namespace RBX
 	{
 	}
 
+	// TODO: figure out where this can go, maybe it's not an inline? it's the
+	// only way i can make this work sensibly though
+	inline Primitive* _featureInline(Instance* instance)
+	{
+		if (instance)
+		{
+			PartInstance* part = Instance::fastDynamicCast<PartInstance>(instance->getParent());
+
+			if (part)
+				return part->getPrimitive();
+		}
+
+		return NULL;
+	}
+
 	void VelocityMotor::setPart(int i, Feature* feature)
 	{
-		Primitive* prim;
-		PartInstance* part;
-
-		// TODO: really?
-		if (feature && (part = fastDynamicCast<PartInstance>(feature->getParent())))
-		{
-			prim = part->getPrimitive();
-		}
-		else
-		{
-			prim = NULL;
-		}
+		Primitive* prim = _featureInline(feature);
 
 		G3D::CoordinateFrame c = feature ? feature->computeLocalCoordinateFrame() : G3D::CoordinateFrame();
 
