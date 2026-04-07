@@ -1,0 +1,8 @@
+; WebService.def : declares the module parameters for the DLL.
+
+LIBRARY	     "WebService"
+
+EXPORTS
+	HttpExtensionProc
+	GetExtensionVersion
+	TerminateExtension
