@@ -16,6 +16,14 @@ public:
 
 [ emitidl(restricted) ];
 
+boost::once_flag flagInitRoblox = BOOST_ONCE_INIT;
+static bool initRobloxFailed;
+
+void initRoblox()
+{
+
+}
+
 typedef CIsapiExtension<> ExtensionType;
 
 // The ATL Server ISAPI extension
@@ -26,6 +34,11 @@ ExtensionType theExtension;
 //
 extern "C" DWORD WINAPI HttpExtensionProc(LPEXTENSION_CONTROL_BLOCK lpECB)
 {
+	boost::call_once(&initRoblox, flagInitRoblox);
+
+	if (initRobloxFailed)
+		return HSE_STATUS_ERROR;
+
 	return theExtension.HttpExtensionProc(lpECB);
 }
 

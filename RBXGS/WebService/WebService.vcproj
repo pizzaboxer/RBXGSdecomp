@@ -101,7 +101,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			IntermediateDirectory="obj\$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfATL="2"
 			CharacterSet="1"
@@ -126,6 +126,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="..\..\Client\boost_1_34_1\src"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_USRDLL;_ATL_ATTRIBUTES"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"
@@ -148,6 +149,7 @@
 				Name="VCLinkerTool"
 				OutputFile="$(OutDir)\WebService.dll"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="..\..\Client\boost_1_34_1\stage\lib"
 				ModuleDefinitionFile=".\WebService.def"
 				MergedIDLBaseFileName="_WebService.idl"
 				GenerateDebugInformation="true"
@@ -183,6 +185,10 @@
 		</Configuration>
 	</Configurations>
 	<References>
+		<ProjectReference
+			ReferencedProjectIdentifier="{F6A50BC6-9F70-4186-A1FF-AA4806785EB9}"
+			RelativePathToProject=".\Client\App\App.vcproj"
+		/>
 	</References>
 	<Files>
 		<Filter
