@@ -1,4 +1,4 @@
 <?xml version="1.0" ?>
 <discovery xmlns="http://schemas.xmlsoap.org/disco/">
-	<contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://D820/WebService/WebService.dll?Handler=GenWebServiceWSDL" docRef="http://D820/WebService/WebService.htm"/>
+	<contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://D820/RBXGS/WebService.dll?Handler=GenWebServiceWSDL" docRef="http://D820/RBXGS/WebService.htm"/>
 </discovery>

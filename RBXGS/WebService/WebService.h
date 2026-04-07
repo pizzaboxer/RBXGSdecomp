@@ -2,17 +2,17 @@
 //
 #pragma once
 
-namespace WebServiceService
+namespace Roblox
 {
 // all struct, enum, and typedefs for your webservice should go inside the namespace
 
-// IWebServiceService - web service interface declaration
+// IWebService - web service interface declaration
 //
 [
 	uuid("73A2AE7C-30FD-48E1-86DE-795691F553DE"), 
 	object
 ]
-__interface IWebServiceService
+__interface IWebService
 {
 	// HelloWorld is a sample ATL Server web service method.  It shows how to
 	// declare a web service method and its in-parameters and out-parameters
@@ -21,18 +21,18 @@ __interface IWebServiceService
 };
 
 
-// WebServiceService - web service implementation
+// Roblox - web service implementation
 //
 [
-	request_handler(name="Default", sdl="GenWebServiceWSDL"),
+	request_handler(name="Default", sdl="WSDL"),
 	soap_handler(
-		name="WebServiceService", 
-		namespace="urn:WebServiceService",
+		name="Service", 
+		namespace="urn:Roblox",
 		protocol="soap"
 	)
 ]
-class CWebServiceService :
-	public IWebServiceService
+class CWebService :
+	public IWebService
 {
 public:
 	// This is a sample web service method that shows how to use the 
