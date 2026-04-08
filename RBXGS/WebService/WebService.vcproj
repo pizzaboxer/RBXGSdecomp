@@ -126,7 +126,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\Client\boost_1_34_1\src"
+				AdditionalIncludeDirectories="..\..\Client\boost_1_34_1\src;..\..\Client\App\include;..\..\Client\Rendering\g3d\include;..\..\Client\Rendering\AppDraw\include;..\..\Client\RbxGraphics\include"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_USRDLL;_ATL_ATTRIBUTES"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"

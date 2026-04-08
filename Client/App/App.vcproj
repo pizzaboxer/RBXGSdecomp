@@ -224,6 +224,14 @@
 		</Configuration>
 	</Configurations>
 	<References>
+		<ProjectReference
+			ReferencedProjectIdentifier="{E928D86E-80C7-476A-80C8-B3611300207A}"
+			RelativePathToProject=".\Client\Rendering\g3d\graphics3D.vcproj"
+		/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{B28C1238-6941-4DCB-8494-EF5D80977422}"
+			RelativePathToProject=".\Client\Rendering\AppDraw\AppDraw.vcproj"
+		/>
 	</References>
 	<Files>
 		<Filter
